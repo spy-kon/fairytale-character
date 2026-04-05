@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>✨ Παραμυθένιοι Χαρακτήρες</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<!-- ElevenLabs official widget -->
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 <style>
 :root {
   --ink: #1a0e2e; --parchment: #f5edd6;
@@ -44,6 +46,7 @@ h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.6rem,4.5vw,2.8rem);fo
 .card::before,.card::after{content:'✦';position:absolute;color:var(--gold);opacity:.28;font-size:.7rem;}
 .card::before{top:.4rem;left:.4rem;}.card::after{bottom:.4rem;right:.4rem;}
 .card-title{font-family:'Cinzel Decorative',serif;font-size:.8rem;color:var(--gold-light);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.2rem;padding-bottom:.65rem;border-bottom:1px solid rgba(201,150,58,.15);}
+.full{grid-column:1/-1;}
 
 label{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:.35rem;margin-top:1rem;}
 label:first-of-type{margin-top:0;}
@@ -80,38 +83,35 @@ select option{background:#1a0e2e;}
 .badges{display:flex;flex-wrap:wrap;gap:.35rem;}
 .badge{font-size:.73rem;padding:.18rem .6rem;border-radius:12px;background:rgba(201,150,58,.1);border:1px solid rgba(201,150,58,.26);color:var(--gold-light);}
 
-/* ── CALL BOX ── */
-.call-box{background:rgba(107,63,160,.07);border:1px solid rgba(107,63,160,.22);border-radius:4px;padding:2rem;text-align:center;margin-top:1.5rem;}
-.call-status{font-family:'Cinzel Decorative',serif;font-size:.88rem;color:var(--magic-glow);letter-spacing:.1em;margin-bottom:1.5rem;min-height:1.4rem;}
+/* ── WIDGET CONTAINER ── */
+.widget-wrap{
+  margin-top:1.5rem;
+  background:rgba(107,63,160,.07);
+  border:1px solid rgba(107,63,160,.22);
+  border-radius:4px; padding:2rem;
+  display:flex; flex-direction:column; align-items:center; gap:1rem;
+}
+.widget-label{
+  font-family:'Cinzel Decorative',serif; font-size:.78rem;
+  color:var(--gold); letter-spacing:.14em; text-transform:uppercase; opacity:.7;
+}
+.widget-hint{
+  font-style:italic; font-size:.88rem; color:var(--parchment);
+  opacity:.5; text-align:center;
+}
 
-.orb-wrap{display:flex;justify-content:center;margin-bottom:1.8rem;}
-.orb{width:120px;height:120px;border-radius:50%;position:relative;background:radial-gradient(circle at 40% 35%,#7b4fc0,#3a1a6e);box-shadow:0 0 30px rgba(107,63,160,.5);cursor:pointer;transition:transform .2s;display:flex;align-items:center;justify-content:center;border:2px solid rgba(160,124,204,.4);}
-.orb:hover{transform:scale(1.04);}
-.orb.listening{animation:orb-pulse 1.2s infinite;box-shadow:0 0 0 0 rgba(160,124,204,.6),0 0 40px rgba(107,63,160,.7);}
-.orb.speaking{animation:orb-speak .6s infinite alternate;box-shadow:0 0 40px rgba(201,150,58,.6);background:radial-gradient(circle at 40% 35%,#c9963a,#6b3000);border-color:rgba(201,150,58,.6);}
-.orb.idle{opacity:.7;}
-.orb.muted{opacity:.5;filter:grayscale(.7);}
-@keyframes orb-pulse{0%{box-shadow:0 0 0 0 rgba(160,124,204,.6),0 0 30px rgba(107,63,160,.5);}70%{box-shadow:0 0 0 20px rgba(160,124,204,0),0 0 50px rgba(107,63,160,.8);}100%{box-shadow:0 0 0 0 rgba(160,124,204,0),0 0 30px rgba(107,63,160,.5);}}
-@keyframes orb-speak{from{transform:scale(1);box-shadow:0 0 25px rgba(201,150,58,.5);}to{transform:scale(1.07);box-shadow:0 0 55px rgba(201,150,58,.8);}}
-.orb-icon{font-size:2.6rem;pointer-events:none;}
+/* Style the ElevenLabs widget to match our theme */
+elevenlabs-convai {
+  --elevenlabs-convai-button-color: #6b3fa0;
+  --elevenlabs-convai-button-active-color: #c9963a;
+}
 
-.orb-hint{font-size:.88rem;color:var(--parchment);opacity:.55;font-style:italic;margin-bottom:1.5rem;min-height:1.2rem;}
-
-.vol-bars{display:flex;justify-content:center;gap:4px;height:36px;align-items:flex-end;margin-bottom:1.5rem;}
-.bar{width:5px;border-radius:3px;background:var(--magic-glow);opacity:.25;transition:height .1s ease,opacity .1s ease;min-height:4px;}
-.bar.active{opacity:.85;}
-
-.transcript{background:rgba(0,0,0,.2);border-radius:3px;padding:.8rem 1rem;min-height:60px;max-height:180px;overflow-y:auto;font-size:.95rem;line-height:1.6;text-align:left;color:var(--parchment);opacity:.85;margin-bottom:1.2rem;}
-.transcript:empty::before{content:'Η συνομιλία θα εμφανίζεται εδώ…';opacity:.4;font-style:italic;}
-.transcript::-webkit-scrollbar{width:2px;}.transcript::-webkit-scrollbar-thumb{background:rgba(160,124,204,.4);}
-.t-user{color:#a0c8e8;margin-bottom:.3rem;display:block;}
-.t-agent{color:var(--magic-glow);font-style:italic;margin-bottom:.3rem;display:block;}
-
-.call-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;}
-.btn-end{padding:.6rem 1.5rem;background:rgba(180,60,60,.18);border:1px solid rgba(220,80,80,.38);border-radius:2px;color:#e08080;font-family:'Cinzel Decorative',serif;font-size:.78rem;letter-spacing:.08em;cursor:pointer;transition:all .2s;}
-.btn-end:hover{background:rgba(180,60,60,.35);}
-.btn-new{padding:.6rem 1.5rem;background:transparent;border:1px solid rgba(245,237,214,.2);border-radius:2px;color:var(--parchment);opacity:.55;font-family:'Crimson Pro',serif;font-size:.9rem;cursor:pointer;transition:all .2s;}
+.btn-new{margin-top:.5rem;padding:.6rem 1.5rem;background:transparent;border:1px solid rgba(245,237,214,.2);border-radius:2px;color:var(--parchment);opacity:.55;font-family:'Crimson Pro',serif;font-size:.9rem;cursor:pointer;transition:all .2s;}
 .btn-new:hover{opacity:.9;}
+
+/* Info box */
+.info-box{background:rgba(107,63,160,.08);border:1px solid rgba(160,124,204,.18);border-radius:3px;padding:.9rem 1.1rem;font-size:.85rem;line-height:1.6;color:var(--parchment);opacity:.75;margin-top:.8rem;}
+.info-box strong{color:var(--gold-light);}
 </style>
 </head>
 <body>
@@ -148,12 +148,12 @@ select option{background:#1a0e2e;}
         </div>
         <label>Κόσμος / Σκηνικό</label>
         <select id="charWorld">
-          <option value="enchanted forest">🌲 Μαγικό Δάσος</option>
-          <option value="underwater kingdom">🌊 Υποθαλάσσιο Βασίλειο</option>
-          <option value="floating sky islands">☁️ Νησιά στα Σύννεφα</option>
-          <option value="ancient magical kingdom">🏰 Αρχαίο Μαγικό Βασίλειο</option>
-          <option value="dark cursed land">🌑 Σκοτεινή Γη</option>
-          <option value="starry cosmos">✨ Αστρικός Κόσμος</option>
+          <option value="Μαγικό Δάσος">🌲 Μαγικό Δάσος</option>
+          <option value="Υποθαλάσσιο Βασίλειο">🌊 Υποθαλάσσιο Βασίλειο</option>
+          <option value="Νησιά στα Σύννεφα">☁️ Νησιά στα Σύννεφα</option>
+          <option value="Αρχαίο Μαγικό Βασίλειο">🏰 Αρχαίο Μαγικό Βασίλειο</option>
+          <option value="Σκοτεινή Γη">🌑 Σκοτεινή Γη</option>
+          <option value="Αστρικός Κόσμος">✨ Αστρικός Κόσμος</option>
         </select>
       </div>
 
@@ -175,16 +175,16 @@ select option{background:#1a0e2e;}
           <span class="trait" data-val="αδέσμευτος">αδέσμευτος</span>
         </div>
         <label>Επιπλέον στοιχεία (προαιρετικό)</label>
-        <textarea id="charExtra" placeholder="π.χ. Μιλά σε ρίμες, κρύβει ένα μυστικό, φοβάται το νερό…"></textarea>
-        <button class="btn-primary" id="startBtn" onclick="startConversation()">
-          🎙 Μίλα με τον Χαρακτήρα
+        <textarea id="charExtra" placeholder="π.χ. Μιλά σε ρίμες, κρύβει ένα μυστικό…"></textarea>
+        <button class="btn-primary" onclick="showCharacter()">
+          ✨ Δημιούργησε τον Χαρακτήρα
         </button>
         <div class="err" id="formErr" style="display:none"></div>
       </div>
     </div>
   </div>
 
-  <!-- CHARACTER + CALL SCREEN -->
+  <!-- CHARACTER SCREEN -->
   <div id="char-screen">
     <div class="card">
       <div class="card-title">✦ Ο Χαρακτήρας Σου</div>
@@ -197,54 +197,29 @@ select option{background:#1a0e2e;}
         </div>
       </div>
 
-      <div class="call-box">
-        <div class="call-status" id="callStatus">Συνδέεται…</div>
-        <div class="orb-wrap">
-          <div class="orb idle" id="orb" onclick="toggleMic()">
-            <span class="orb-icon" id="orbIcon">⏳</span>
-          </div>
-        </div>
-        <div class="orb-hint" id="orbHint">Φορτώνει τον χαρακτήρα…</div>
-        <div class="vol-bars">
-          <div class="bar" id="b0"></div><div class="bar" id="b1"></div>
-          <div class="bar" id="b2"></div><div class="bar" id="b3"></div>
-          <div class="bar" id="b4"></div><div class="bar" id="b5"></div>
-          <div class="bar" id="b6"></div>
-        </div>
-        <div class="transcript" id="transcript"></div>
-        <div class="call-btns">
-          <button class="btn-end" onclick="endCall()">⏹ Τέλος Συνομιλίας</button>
-          <button class="btn-new" onclick="newCharacter()">↩ Νέος Χαρακτήρας</button>
+      <div class="info-box" id="promptBox"></div>
+
+      <div class="widget-wrap">
+        <div class="widget-label">✦ Μίλα με τον Χαρακτήρα</div>
+        <div class="widget-hint">Πάτα το κουμπί και μίλα με το μικρόφωνό σου 🎙</div>
+        <!-- ElevenLabs official embed widget -->
+        <elevenlabs-convai
+          id="elWidget"
+          agent-id="agent_2301kneeqw6jem195f14a1avjenh">
+        </elevenlabs-convai>
+        <div class="widget-hint" style="font-size:.8rem;margin-top:.3rem;">
+          💡 Πριν μιλήσεις, πήγαινε στο <strong style="color:var(--gold-light)">ElevenLabs dashboard</strong> → agent σου → <strong style="color:var(--gold-light)">System Prompt</strong> και επικόλλα τον παρακάτω χαρακτήρα.
         </div>
       </div>
+
+      <button class="btn-new" onclick="resetAll()">↩ Νέος Χαρακτήρας</button>
     </div>
   </div>
 
 </div>
 
-<script type="module">
-// Load SDK via esm.sh (supports browser ESM natively)
-import { Conversation } from 'https://esm.sh/@elevenlabs/client';
-window.__ELConversation = Conversation;
-window.__ELReady = true;
-window.dispatchEvent(new Event('el-sdk-ready'));
-</script>
 <script>
-const AGENT_ID = 'agent_2301kneeqw6jem195f14a1avjenh';
-
 const ICONS = {'Μάγος':'🧙','Πριγκίπισσα':'👑','Δράκος':'🐉','Ήρωας':'⚔️','Νεράιδα':'🧚','Τέρας':'👹','Σοφός Γέρος':'🦉','Εφευρέτης':'⚙️','Μυστηριώδης':'🌒'};
-
-const FIRST_MSG = {
-  'Μάγος':       'Προσέγγισε, αν τολμάς… Τι ζητάς από τον μάγο;',
-  'Πριγκίπισσα': 'Ω! Ένας επισκέπτης! Χαίρομαι που ήρθες στο βασίλειό μου.',
-  'Δράκος':      '*βαθύ γρύλισμα* Ποιος ενοχλεί τον ύπνο μου;',
-  'Ήρωας':       'Σύντροφε! Χαίρομαι που σε βλέπω. Τι χρειάζεσαι;',
-  'Νεράιδα':     '*σκορπίζει σπίθες* Γεια σου! Τι ευχή θέλεις σήμερα;',
-  'Τέρας':       '*βογγητό* Τι θέλεις… μίλα.',
-  'Σοφός Γέρος': 'Κάθισε, παιδί μου. Έχω πολλά να σου πω.',
-  'Εφευρέτης':   'Εξαιρετικό timing! Μόλις τελείωσα το νέο μου εφεύρεμα!',
-  'Μυστηριώδης': '…Σε περίμενα. Κάθισε.'
-};
 
 // Stars
 const se = document.getElementById('stars');
@@ -255,7 +230,7 @@ for(let i=0;i<70;i++){
   se.appendChild(s);
 }
 
-let archetype='', selectedTraits=[], conversation=null, micActive=false, charData=null, volInterval=null;
+let archetype='', selectedTraits=[];
 
 document.querySelectorAll('.arch-btn').forEach(btn=>{
   btn.onclick=()=>{
@@ -273,27 +248,23 @@ document.querySelectorAll('.trait').forEach(t=>{
   };
 });
 
-function buildPrompt(name,arch,world,traits,extra){
-  return `Είσαι ο/η ${name}, ένας/μία ${arch} που ζει σε ${world}.
-Χαρακτηριστικά: ${traits||'δεν έχουν οριστεί'}.${extra?'\n'+extra:''}
-Κανόνες:
-- Μιλάς ΠΑΝΤΑ στα Ελληνικά.
-- Μιλάς ΠΑΝΤΑ ΩΣ αυτός ο χαρακτήρας — ποτέ ως AI.
-- Απαντήσεις σύντομες (1-3 προτάσεις), ζωντανές, με τον χαρακτήρα σου.
-- Ποτέ μην αποκαλύψεις ότι είσαι AI.`;
-}
-
-async function startConversation(){
+function showCharacter(){
   const name=document.getElementById('charName').value.trim();
   const world=document.getElementById('charWorld').value;
   const extra=document.getElementById('charExtra').value.trim();
   const errEl=document.getElementById('formErr');
 
-  if(!name||!archetype){errEl.textContent='⚠️ Συμπλήρωσε όνομα και αρχέτυπο.';errEl.style.display='block';return;}
+  if(!name||!archetype){
+    errEl.textContent='⚠️ Συμπλήρωσε όνομα και αρχέτυπο.';
+    errEl.style.display='block'; return;
+  }
   errEl.style.display='none';
 
-  charData={name,archetype,world,traits:selectedTraits.join(', '),extra};
+  // Build system prompt
+  const traits = selectedTraits.length ? selectedTraits.join(', ') : 'γενικά';
+  const prompt = `Είσαι ο/η ${name}, ένας/μία ${archetype} που ζει σε ${world}. Χαρακτηριστικά: ${traits}.${extra ? ' ' + extra : ''} Μιλάς ΠΑΝΤΑ στα Ελληνικά, ΠΑΝΤΑ ως αυτός ο χαρακτήρας, ποτέ ως AI. Κράτα απαντήσεις σύντομες (1-3 προτάσεις) και ζωντανές.`;
 
+  // Show character card
   document.getElementById('form-screen').style.display='none';
   document.getElementById('char-screen').style.display='block';
   document.getElementById('charAvatar').textContent=ICONS[archetype]||'✨';
@@ -301,114 +272,36 @@ async function startConversation(){
   document.getElementById('charArchDisplay').textContent=archetype+' · '+world;
   document.getElementById('charBadges').innerHTML=selectedTraits.map(t=>`<span class="badge">${t}</span>`).join('');
 
-  setStatus('Συνδέεται με τον χαρακτήρα…');
+  // Show the prompt to copy
+  document.getElementById('promptBox').innerHTML = `
+    <strong>📋 System Prompt για τον agent σου:</strong><br><br>
+    <span style="font-style:italic;opacity:.85">${prompt}</span><br><br>
+    <button onclick="copyPrompt(this,'${encodeURIComponent(prompt)}')" style="background:rgba(201,150,58,.15);border:1px solid var(--gold);border-radius:2px;color:var(--gold-light);font-family:'Crimson Pro',serif;font-size:.88rem;padding:.35rem .9rem;cursor:pointer;">
+      📋 Αντέγραψε το Prompt
+    </button>
+  `;
 
-  // Wait for SDK to be ready
-  let attempts = 0;
-  while (!window.__ELReady && attempts < 30) {
-    await new Promise(r => setTimeout(r, 200)); attempts++;
-  }
-
-  const Conversation = window.__ELConversation;
-  if (!Conversation) {
-    setStatus('❌ Σφάλμα φόρτωσης SDK'); setOrb('idle','⚠️');
-    setHint('Έλεγξε τη σύνδεσή σου και ανανέωσε τη σελίδα.');
-    return;
-  }
-
-  try{
-    conversation = await Conversation.startSession({
-      agentId: AGENT_ID,
-      overrides:{
-        agent:{
-          prompt:{ prompt: buildPrompt(name,archetype,world,charData.traits,extra) },
-          firstMessage: FIRST_MSG[archetype]||`Γεια σου! Είμαι ο/η ${name}.`,
-          language:'el'
-        }
-      },
-      onConnect:()=>{
-        setStatus('✦ Συνδεδεμένος — Μίλα!');
-        setOrb('listening','🎙'); setHint('Μίλα στον χαρακτήρα…');
-        micActive=true; startVolBars();
-      },
-      onDisconnect:()=>{
-        setStatus('Η συνομιλία τελείωσε');
-        setOrb('idle','🌙'); setHint(''); stopVolBars();
-      },
-      onMessage:({source,message})=>{
-        if(message?.trim()) addTranscript(source==='user'?'user':'agent', message);
-      },
-      onModeChange:({mode})=>{
-        if(mode==='speaking'){setOrb('speaking','🔊');setHint(`${name} μιλά…`);}
-        else{setOrb('listening','🎙');setHint('Μίλα στον χαρακτήρα…');}
-      },
-      onError:(e)=>{
-        console.error(e); setStatus('❌ Σφάλμα σύνδεσης');
-        setOrb('idle','⚠️'); setHint(String(e?.message||e||''));
-      }
-    });
-  }catch(e){
-    console.error(e);
-    setStatus('❌ Αποτυχία σύνδεσης');
-    setOrb('idle','⚠️');
-    setHint(e?.message||'Έλεγξε το Agent ID και τα permissions.');
-  }
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('char-screen').scrollIntoView({behavior:'smooth'});
 }
 
-function toggleMic(){
-  if(!conversation) return;
-  micActive=!micActive;
-  conversation.setMicMuted(!micActive);
-  if(micActive){setOrb('listening','🎙');setHint('Μίλα στον χαρακτήρα…');}
-  else{setOrb('muted','🔇');setHint('Μικρόφωνο σε σίγαση — πάτα για επανενεργοποίηση');}
+function copyPrompt(btn, encoded) {
+  const text = decodeURIComponent(encoded);
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent = '✅ Αντιγράφηκε!';
+    setTimeout(()=>{ btn.textContent='📋 Αντέγραψε το Prompt'; }, 2000);
+  });
 }
 
-async function endCall(){
-  if(conversation){try{await conversation.endSession();}catch(e){} conversation=null;}
-  stopVolBars(); micActive=false;
-  setStatus('Η συνομιλία τελείωσε'); setOrb('idle','🌙'); setHint('');
-}
-
-async function newCharacter(){
-  await endCall();
+function resetAll(){
   document.getElementById('char-screen').style.display='none';
   document.getElementById('form-screen').style.display='block';
-  document.getElementById('transcript').innerHTML='';
   document.getElementById('charName').value='';
   document.getElementById('charExtra').value='';
   archetype=''; selectedTraits=[];
   document.querySelectorAll('.arch-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.trait').forEach(t=>t.classList.remove('active'));
   window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function setStatus(m){document.getElementById('callStatus').textContent=m;}
-function setHint(m){document.getElementById('orbHint').textContent=m;}
-function setOrb(state,icon){
-  document.getElementById('orb').className=`orb ${state}`;
-  document.getElementById('orbIcon').textContent=icon;
-}
-function addTranscript(role,text){
-  const el=document.getElementById('transcript');
-  const line=document.createElement('span');
-  line.className=role==='user'?'t-user':'t-agent';
-  line.textContent=(role==='user'?'🧑 ':(ICONS[charData?.archetype]||'✨')+' ')+text;
-  el.appendChild(line); el.scrollTop=el.scrollHeight;
-}
-function startVolBars(){
-  const bars=document.querySelectorAll('.bar');
-  volInterval=setInterval(()=>{
-    const orb=document.getElementById('orb');
-    const active=orb.classList.contains('listening')||orb.classList.contains('speaking');
-    bars.forEach(b=>{
-      b.style.height=(active?Math.random()*28+4:4)+'px';
-      b.classList.toggle('active',active);
-    });
-  },120);
-}
-function stopVolBars(){
-  clearInterval(volInterval);
-  document.querySelectorAll('.bar').forEach(b=>{b.style.height='4px';b.classList.remove('active');});
 }
 </script>
 </body>
