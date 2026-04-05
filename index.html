@@ -222,8 +222,13 @@ select option{background:#1a0e2e;}
 
 </div>
 
-<!-- ElevenLabs SDK via CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@elevenlabs/client/dist/index.umd.js"></script>
+<script type="module">
+// Load SDK via esm.sh (supports browser ESM natively)
+import { Conversation } from 'https://esm.sh/@elevenlabs/client';
+window.__ELConversation = Conversation;
+window.__ELReady = true;
+window.dispatchEvent(new Event('el-sdk-ready'));
+</script>
 <script>
 const AGENT_ID = 'agent_2301kneeqw6jem195f14a1avjenh';
 
@@ -298,21 +303,21 @@ async function startConversation(){
 
   setStatus('Συνδέεται με τον χαρακτήρα…');
 
-  // Wait for SDK
-  let attempts=0;
-  while(!window.ElevenLabsClient && attempts<20){
-    await new Promise(r=>setTimeout(r,300)); attempts++;
+  // Wait for SDK to be ready
+  let attempts = 0;
+  while (!window.__ELReady && attempts < 30) {
+    await new Promise(r => setTimeout(r, 200)); attempts++;
   }
 
-  const SDK = window.ElevenLabsClient || window.elevenlabs;
-  if(!SDK?.Conversation){
+  const Conversation = window.__ELConversation;
+  if (!Conversation) {
     setStatus('❌ Σφάλμα φόρτωσης SDK'); setOrb('idle','⚠️');
-    setHint('Ανανέωσε τη σελίδα και δοκίμασε ξανά.');
+    setHint('Έλεγξε τη σύνδεσή σου και ανανέωσε τη σελίδα.');
     return;
   }
 
   try{
-    conversation = await SDK.Conversation.startSession({
+    conversation = await Conversation.startSession({
       agentId: AGENT_ID,
       overrides:{
         agent:{
