@@ -7,212 +7,111 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink: #1a0e2e;
-  --parchment: #f5edd6;
-  --gold: #c9963a;
-  --gold-light: #e8c06a;
-  --magic: #6b3fa0;
-  --magic-glow: #a07ccc;
+  --ink: #1a0e2e; --parchment: #f5edd6;
+  --gold: #c9963a; --gold-light: #e8c06a;
+  --magic: #6b3fa0; --magic-glow: #a07ccc;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing:border-box; margin:0; padding:0; }
 body {
-  background: var(--ink); color: var(--parchment);
-  font-family: 'Crimson Pro', Georgia, serif; font-size: 17px;
-  min-height: 100vh; overflow-x: hidden;
+  background:var(--ink); color:var(--parchment);
+  font-family:'Crimson Pro',Georgia,serif; font-size:17px;
+  min-height:100vh; overflow-x:hidden;
 }
 body::before {
   content:''; position:fixed; inset:0; z-index:-1;
   background:
-    radial-gradient(ellipse at 20% 20%, #2a1a4e 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, #1a2a4e 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 20%,#2a1a4e 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 80%,#1a2a4e 0%,transparent 55%);
 }
-.stars { position:fixed; inset:0; z-index:-1; pointer-events:none; }
-.star {
-  position:absolute; border-radius:50%; background:white;
-  animation: twinkle var(--d,3s) infinite alternate;
-}
-@keyframes twinkle {
-  from { opacity:.1; transform:scale(.8); }
-  to   { opacity:.9; transform:scale(1.2); }
-}
-header { text-align:center; padding:2.5rem 1rem 1.5rem; }
-.ornament { font-size:.75rem; letter-spacing:.4em; color:var(--gold); opacity:.8; text-transform:uppercase; margin-bottom:.4rem; }
-h1 {
-  font-family:'Cinzel Decorative',serif; font-size:clamp(1.6rem,4.5vw,2.8rem); font-weight:900;
+.stars{position:fixed;inset:0;z-index:-1;pointer-events:none;}
+.star{position:absolute;border-radius:50%;background:white;animation:twinkle var(--d,3s) infinite alternate;}
+@keyframes twinkle{from{opacity:.1;transform:scale(.8);}to{opacity:.9;transform:scale(1.2);}}
+
+header{text-align:center;padding:2.5rem 1rem 1.5rem;}
+.ornament{font-size:.75rem;letter-spacing:.4em;color:var(--gold);opacity:.75;text-transform:uppercase;margin-bottom:.4rem;}
+h1{font-family:'Cinzel Decorative',serif;font-size:clamp(1.6rem,4.5vw,2.8rem);font-weight:900;
   background:linear-gradient(135deg,#e8c06a,#c9963a,#d4a830,#e8c06a);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
-  filter:drop-shadow(0 0 18px rgba(201,150,58,.4)); line-height:1.2; margin-bottom:.4rem;
-}
-.subtitle { font-style:italic; color:var(--magic-glow); font-size:1rem; opacity:.85; }
-.divider { color:var(--gold); font-size:1.2rem; letter-spacing:.5rem; margin:.8rem 0; opacity:.5; }
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  filter:drop-shadow(0 0 18px rgba(201,150,58,.4));line-height:1.2;margin-bottom:.4rem;}
+.subtitle{font-style:italic;color:var(--magic-glow);font-size:1rem;opacity:.85;}
+.divider{color:var(--gold);font-size:1.2rem;letter-spacing:.5rem;margin:.8rem 0;opacity:.45;}
 
-.app { max-width:860px; margin:0 auto; padding:0 1.2rem 3rem; }
+.app{max-width:860px;margin:0 auto;padding:0 1.2rem 3rem;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+@media(max-width:620px){.grid{grid-template-columns:1fr;}}
 
-.grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
-@media(max-width:620px){ .grid{ grid-template-columns:1fr; } }
+.card{background:rgba(245,237,214,.04);border:1px solid rgba(201,150,58,.2);border-radius:4px;padding:1.5rem;position:relative;}
+.card::before,.card::after{content:'✦';position:absolute;color:var(--gold);opacity:.28;font-size:.7rem;}
+.card::before{top:.4rem;left:.4rem;}.card::after{bottom:.4rem;right:.4rem;}
+.card-title{font-family:'Cinzel Decorative',serif;font-size:.8rem;color:var(--gold-light);text-transform:uppercase;letter-spacing:.14em;margin-bottom:1.2rem;padding-bottom:.65rem;border-bottom:1px solid rgba(201,150,58,.15);}
 
-.card {
-  background:rgba(245,237,214,.04); border:1px solid rgba(201,150,58,.22);
-  border-radius:4px; padding:1.5rem; position:relative;
-}
-.card::before,.card::after { content:'✦'; position:absolute; color:var(--gold); opacity:.3; font-size:.7rem; }
-.card::before { top:.4rem; left:.4rem; }
-.card::after  { bottom:.4rem; right:.4rem; }
-.card-title {
-  font-family:'Cinzel Decorative',serif; font-size:.8rem; color:var(--gold-light);
-  text-transform:uppercase; letter-spacing:.14em; margin-bottom:1.2rem;
-  padding-bottom:.65rem; border-bottom:1px solid rgba(201,150,58,.18);
-}
-.full { grid-column:1/-1; }
+label{display:block;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:.35rem;margin-top:1rem;}
+label:first-of-type{margin-top:0;}
+input[type=text],textarea,select{width:100%;background:rgba(245,237,214,.06);border:1px solid rgba(201,150,58,.26);border-radius:2px;color:var(--parchment);font-family:'Crimson Pro',serif;font-size:1rem;padding:.55rem .85rem;outline:none;transition:border-color .25s,background .25s;}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);background:rgba(245,237,214,.1);}
+textarea{resize:vertical;min-height:80px;line-height:1.6;}
+select option{background:#1a0e2e;}
 
-label {
-  display:block; font-size:.76rem; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--gold); opacity:.8; margin-bottom:.35rem; margin-top:1rem;
-}
-label:first-of-type { margin-top:0; }
+.archetype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-top:.4rem;}
+.arch-btn{cursor:pointer;padding:.55rem .3rem;border:1px solid rgba(201,150,58,.2);border-radius:3px;text-align:center;font-family:'Crimson Pro',serif;font-size:.82rem;color:var(--parchment);opacity:.52;transition:all .22s;background:transparent;line-height:1.25;}
+.arch-btn .icon{font-size:1.3rem;display:block;margin-bottom:.15rem;}
+.arch-btn:hover{opacity:.9;border-color:var(--gold);}
+.arch-btn.active{background:rgba(107,63,160,.28);border-color:var(--magic-glow);color:var(--magic-glow);opacity:1;}
 
-input[type=text], input[type=password], textarea, select {
-  width:100%; background:rgba(245,237,214,.06); border:1px solid rgba(201,150,58,.28);
-  border-radius:2px; color:var(--parchment); font-family:'Crimson Pro',serif; font-size:1rem;
-  padding:.55rem .85rem; outline:none; transition:border-color .25s,background .25s;
-}
-input:focus, textarea:focus, select:focus { border-color:var(--gold); background:rgba(245,237,214,.1); }
-textarea { resize:vertical; min-height:100px; line-height:1.6; }
-select option { background:#1a0e2e; }
+.traits-wrap{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem;}
+.trait{cursor:pointer;padding:.28rem .75rem;border:1px solid rgba(201,150,58,.24);border-radius:16px;font-size:.85rem;color:var(--parchment);opacity:.52;transition:all .2s;user-select:none;}
+.trait:hover{opacity:.9;border-color:var(--gold);}
+.trait.active{background:rgba(201,150,58,.18);border-color:var(--gold-light);color:var(--gold-light);opacity:1;}
 
-.archetype-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; margin-top:.4rem; }
-.arch-btn {
-  cursor:pointer; padding:.55rem .3rem; border:1px solid rgba(201,150,58,.22); border-radius:3px;
-  text-align:center; font-family:'Crimson Pro',serif; font-size:.82rem; color:var(--parchment);
-  opacity:.55; transition:all .2s; background:transparent; line-height:1.25;
-}
-.arch-btn .icon { font-size:1.3rem; display:block; margin-bottom:.15rem; }
-.arch-btn:hover { opacity:.9; border-color:var(--gold); }
-.arch-btn.active { background:rgba(107,63,160,.25); border-color:var(--magic-glow); color:var(--magic-glow); opacity:1; }
+.btn-primary{width:100%;margin-top:1.3rem;padding:.85rem 1.5rem;background:linear-gradient(135deg,rgba(201,150,58,.14),rgba(201,150,58,.07));border:1px solid var(--gold);border-radius:2px;color:var(--gold-light);font-family:'Cinzel Decorative',serif;font-size:.88rem;letter-spacing:.1em;cursor:pointer;transition:all .3s;}
+.btn-primary:hover{background:linear-gradient(135deg,rgba(201,150,58,.26),rgba(201,150,58,.14));box-shadow:0 0 20px rgba(201,150,58,.2);}
+.btn-primary:disabled{opacity:.38;cursor:not-allowed;}
+.err{color:#e07070;font-size:.85rem;margin-top:.5rem;font-style:italic;}
 
-.traits-wrap { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.4rem; }
-.trait {
-  cursor:pointer; padding:.28rem .75rem; border:1px solid rgba(201,150,58,.25); border-radius:16px;
-  font-size:.85rem; color:var(--parchment); opacity:.55; transition:all .2s; user-select:none;
-}
-.trait:hover { opacity:.9; border-color:var(--gold); }
-.trait.active { background:rgba(201,150,58,.18); border-color:var(--gold-light); color:var(--gold-light); opacity:1; }
+/* ── CHARACTER SCREEN ── */
+#char-screen{display:none;margin-top:1.5rem;}
+.char-header{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:center;margin-bottom:1.5rem;}
+@media(max-width:500px){.char-header{grid-template-columns:1fr;}}
+.avatar{width:110px;height:110px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3.2rem;background:radial-gradient(circle,rgba(107,63,160,.22),rgba(26,14,46,.55));flex-shrink:0;position:relative;}
+.avatar::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px dashed rgba(201,150,58,.28);animation:spin 20s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.char-name{font-family:'Cinzel Decorative',serif;font-size:1.4rem;color:var(--gold-light);margin-bottom:.25rem;}
+.char-arch{font-style:italic;color:var(--magic-glow);font-size:.92rem;margin-bottom:.6rem;}
+.badges{display:flex;flex-wrap:wrap;gap:.35rem;}
+.badge{font-size:.73rem;padding:.18rem .6rem;border-radius:12px;background:rgba(201,150,58,.1);border:1px solid rgba(201,150,58,.26);color:var(--gold-light);}
 
-.btn-primary {
-  width:100%; margin-top:1.3rem; padding:.85rem 1.5rem;
-  background:linear-gradient(135deg,rgba(201,150,58,.14),rgba(201,150,58,.07));
-  border:1px solid var(--gold); border-radius:2px; color:var(--gold-light);
-  font-family:'Cinzel Decorative',serif; font-size:.88rem; letter-spacing:.1em;
-  cursor:pointer; transition:all .3s;
-}
-.btn-primary:hover { background:linear-gradient(135deg,rgba(201,150,58,.26),rgba(201,150,58,.14)); box-shadow:0 0 18px rgba(201,150,58,.2); }
-.btn-primary:disabled { opacity:.4; cursor:not-allowed; }
+/* ── CALL BOX ── */
+.call-box{background:rgba(107,63,160,.07);border:1px solid rgba(107,63,160,.22);border-radius:4px;padding:2rem;text-align:center;margin-top:1.5rem;}
+.call-status{font-family:'Cinzel Decorative',serif;font-size:.88rem;color:var(--magic-glow);letter-spacing:.1em;margin-bottom:1.5rem;min-height:1.4rem;}
 
-.btn-small {
-  padding:.3rem .9rem; background:rgba(107,63,160,.2); border:1px solid rgba(160,124,204,.4);
-  border-radius:16px; color:var(--magic-glow); font-family:'Crimson Pro',serif; font-size:.85rem;
-  cursor:pointer; transition:all .2s; white-space:nowrap;
-}
-.btn-small:hover { background:rgba(107,63,160,.38); }
-.btn-small:disabled { opacity:.35; cursor:not-allowed; }
-.btn-small.speaking { border-color:var(--magic-glow); animation:glow 1s infinite alternate; }
-@keyframes glow { from{box-shadow:0 0 4px rgba(160,124,204,.3)} to{box-shadow:0 0 16px rgba(160,124,204,.8)} }
+.orb-wrap{display:flex;justify-content:center;margin-bottom:1.8rem;}
+.orb{width:120px;height:120px;border-radius:50%;position:relative;background:radial-gradient(circle at 40% 35%,#7b4fc0,#3a1a6e);box-shadow:0 0 30px rgba(107,63,160,.5);cursor:pointer;transition:transform .2s;display:flex;align-items:center;justify-content:center;border:2px solid rgba(160,124,204,.4);}
+.orb:hover{transform:scale(1.04);}
+.orb.listening{animation:orb-pulse 1.2s infinite;box-shadow:0 0 0 0 rgba(160,124,204,.6),0 0 40px rgba(107,63,160,.7);}
+.orb.speaking{animation:orb-speak .6s infinite alternate;box-shadow:0 0 40px rgba(201,150,58,.6);background:radial-gradient(circle at 40% 35%,#c9963a,#6b3000);border-color:rgba(201,150,58,.6);}
+.orb.idle{opacity:.7;}
+.orb.muted{opacity:.5;filter:grayscale(.7);}
+@keyframes orb-pulse{0%{box-shadow:0 0 0 0 rgba(160,124,204,.6),0 0 30px rgba(107,63,160,.5);}70%{box-shadow:0 0 0 20px rgba(160,124,204,0),0 0 50px rgba(107,63,160,.8);}100%{box-shadow:0 0 0 0 rgba(160,124,204,0),0 0 30px rgba(107,63,160,.5);}}
+@keyframes orb-speak{from{transform:scale(1);box-shadow:0 0 25px rgba(201,150,58,.5);}to{transform:scale(1.07);box-shadow:0 0 55px rgba(201,150,58,.8);}}
+.orb-icon{font-size:2.6rem;pointer-events:none;}
 
-.api-row { display:flex; gap:.7rem; align-items:center; flex-wrap:wrap; }
-.api-row input { flex:1; min-width:180px; }
-.api-status { margin-top:.55rem; font-size:.85rem; font-style:italic; }
-.api-note { margin-top:.4rem; font-size:.75rem; opacity:.38; }
+.orb-hint{font-size:.88rem;color:var(--parchment);opacity:.55;font-style:italic;margin-bottom:1.5rem;min-height:1.2rem;}
 
-/* Output panel */
-#output-panel { display:none; margin-top:1.5rem; }
-#output-panel.visible { display:block; }
+.vol-bars{display:flex;justify-content:center;gap:4px;height:36px;align-items:flex-end;margin-bottom:1.5rem;}
+.bar{width:5px;border-radius:3px;background:var(--magic-glow);opacity:.25;transition:height .1s ease,opacity .1s ease;min-height:4px;}
+.bar.active{opacity:.85;}
 
-.char-sheet { display:grid; grid-template-columns:auto 1fr; gap:1.5rem; align-items:start; }
-@media(max-width:500px){ .char-sheet{ grid-template-columns:1fr; } }
+.transcript{background:rgba(0,0,0,.2);border-radius:3px;padding:.8rem 1rem;min-height:60px;max-height:180px;overflow-y:auto;font-size:.95rem;line-height:1.6;text-align:left;color:var(--parchment);opacity:.85;margin-bottom:1.2rem;}
+.transcript:empty::before{content:'Η συνομιλία θα εμφανίζεται εδώ…';opacity:.4;font-style:italic;}
+.transcript::-webkit-scrollbar{width:2px;}.transcript::-webkit-scrollbar-thumb{background:rgba(160,124,204,.4);}
+.t-user{color:#a0c8e8;margin-bottom:.3rem;display:block;}
+.t-agent{color:var(--magic-glow);font-style:italic;margin-bottom:.3rem;display:block;}
 
-.avatar {
-  width:110px; height:110px; border:2px solid var(--gold); border-radius:50%;
-  display:flex; align-items:center; justify-content:center; font-size:3.2rem;
-  background:radial-gradient(circle,rgba(107,63,160,.2),rgba(26,14,46,.5));
-  flex-shrink:0; position:relative;
-}
-.avatar::after {
-  content:''; position:absolute; inset:-5px; border-radius:50%;
-  border:1px dashed rgba(201,150,58,.28); animation:spin 20s linear infinite;
-}
-@keyframes spin { to{ transform:rotate(360deg); } }
-
-.char-name { font-family:'Cinzel Decorative',serif; font-size:1.4rem; color:var(--gold-light); margin-bottom:.25rem; }
-.char-arch { font-style:italic; color:var(--magic-glow); font-size:.92rem; margin-bottom:.7rem; }
-.badges { display:flex; flex-wrap:wrap; gap:.35rem; }
-.badge { font-size:.73rem; padding:.18rem .6rem; border-radius:12px; background:rgba(201,150,58,.1); border:1px solid rgba(201,150,58,.28); color:var(--gold-light); }
-
-.bio { line-height:1.8; color:var(--parchment); opacity:.92; font-size:1.02rem; margin-top:1.3rem; }
-
-.sep { margin-top:1.3rem; padding-top:1.3rem; border-top:1px solid rgba(201,150,58,.15); }
-.sec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:.9rem; }
-.sec-label { font-family:'Cinzel Decorative',serif; font-size:.72rem; color:var(--gold); letter-spacing:.14em; }
-
-.voice-bubble {
-  background:rgba(107,63,160,.1); border-left:3px solid var(--magic-glow);
-  border-radius:0 4px 4px 0; padding:.9rem 1.1rem;
-  font-style:italic; font-size:1.05rem; line-height:1.65; color:var(--parchment); position:relative;
-}
-.voice-bubble::before {
-  content:'"'; position:absolute; top:-.4rem; left:.7rem; font-size:2.5rem;
-  color:var(--magic-glow); opacity:.28; font-family:Georgia,serif; line-height:1;
-}
-
-.chat-msgs {
-  max-height:260px; overflow-y:auto; display:flex; flex-direction:column;
-  gap:.7rem; margin-bottom:.9rem; padding-right:.4rem;
-}
-.chat-msgs::-webkit-scrollbar { width:2px; }
-.chat-msgs::-webkit-scrollbar-thumb { background:rgba(201,150,58,.28); }
-
-.msg { max-width:88%; padding:.6rem .95rem; border-radius:2px; font-size:.97rem; line-height:1.5; animation:fadeUp .3s ease; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:translateY(0)} }
-.msg.user { align-self:flex-end; background:rgba(42,74,107,.32); border:1px solid rgba(42,74,107,.45); }
-.msg.char { align-self:flex-start; background:rgba(107,63,160,.13); border:1px solid rgba(107,63,160,.28); border-left:3px solid var(--magic-glow); font-style:italic; }
-
-.chat-row { display:flex; gap:.55rem; }
-.chat-row input { flex:1; }
-.btn-send {
-  padding:.55rem 1.1rem; background:rgba(107,63,160,.22); border:1px solid rgba(160,124,204,.42);
-  border-radius:2px; color:var(--magic-glow); font-family:'Crimson Pro',serif; font-size:.95rem;
-  cursor:pointer; transition:all .2s;
-}
-.btn-send:hover { background:rgba(107,63,160,.38); }
-.btn-send:disabled { opacity:.38; cursor:not-allowed; }
-
-.btn-sec {
-  padding:.45rem 1rem; background:transparent; border:1px solid rgba(245,237,214,.18);
-  border-radius:2px; color:var(--parchment); opacity:.55; font-family:'Crimson Pro',serif;
-  font-size:.88rem; cursor:pointer; transition:all .2s; margin-top:.9rem;
-}
-.btn-sec:hover { opacity:.9; }
-
-.dots { display:inline-flex; gap:3px; align-items:center; }
-.dots span { width:5px; height:5px; border-radius:50%; background:var(--magic-glow); animation:bounce .8s infinite alternate; }
-.dots span:nth-child(2){ animation-delay:.15s } .dots span:nth-child(3){ animation-delay:.3s }
-@keyframes bounce { from{transform:translateY(0);opacity:.4} to{transform:translateY(-5px);opacity:1} }
-
-.err { color:#e07070; font-size:.85rem; margin-top:.5rem; font-style:italic; }
-
-/* Info box */
-.info-box {
-  background:rgba(107,63,160,.08); border:1px solid rgba(160,124,204,.2);
-  border-radius:3px; padding:1rem 1.2rem; font-size:.88rem; line-height:1.6;
-  color:var(--parchment); opacity:.8; margin-top:1rem;
-}
-.info-box strong { color:var(--gold-light); }
-
-/* Voice indicator */
-.voice-indicator {
-  display:inline-flex; align-items:center; gap:.4rem;
-  font-size:.78rem; color:var(--magic-glow); opacity:.7;
-  margin-top:.4rem;
-}
+.call-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;}
+.btn-end{padding:.6rem 1.5rem;background:rgba(180,60,60,.18);border:1px solid rgba(220,80,80,.38);border-radius:2px;color:#e08080;font-family:'Cinzel Decorative',serif;font-size:.78rem;letter-spacing:.08em;cursor:pointer;transition:all .2s;}
+.btn-end:hover{background:rgba(180,60,60,.35);}
+.btn-new{padding:.6rem 1.5rem;background:transparent;border:1px solid rgba(245,237,214,.2);border-radius:2px;color:var(--parchment);opacity:.55;font-family:'Crimson Pro',serif;font-size:.9rem;cursor:pointer;transition:all .2s;}
+.btn-new:hover{opacity:.9;}
 </style>
 </head>
 <body>
@@ -227,381 +126,284 @@ select option { background:#1a0e2e; }
 </header>
 
 <div class="app">
-  <div class="grid">
 
-    <!-- API KEY -->
-    <div class="card full">
-      <div class="card-title">✦ Σύνδεση ElevenLabs</div>
-      <div class="api-row">
-        <input type="password" id="elKey" placeholder="Επικόλλησε το ElevenLabs API key σου…">
-        <button class="btn-small" onclick="connectEL()" id="connectBtn">🔗 Σύνδεση</button>
-      </div>
-      <div class="api-status" id="apiStatus"></div>
-      <div class="api-note">🔒 Αποθηκεύεται μόνο στη μνήμη του browser — δεν φεύγει πουθενά.</div>
-    </div>
-
-    <!-- IDENTITY -->
-    <div class="card">
-      <div class="card-title">✦ Ταυτότητα</div>
-
-      <label>Όνομα Χαρακτήρα</label>
-      <input type="text" id="charName" placeholder="π.χ. Αστέρω η Μαγεύτρα…">
-
-      <label>Αρχέτυπο</label>
-      <div class="archetype-grid" id="archetypeGrid">
-        <button class="arch-btn" data-val="Μάγος"><span class="icon">🧙</span>Μάγος</button>
-        <button class="arch-btn" data-val="Πριγκίπισσα"><span class="icon">👑</span>Πριγκίπισσα</button>
-        <button class="arch-btn" data-val="Δράκος"><span class="icon">🐉</span>Δράκος</button>
-        <button class="arch-btn" data-val="Ήρωας"><span class="icon">⚔️</span>Ήρωας</button>
-        <button class="arch-btn" data-val="Νεράιδα"><span class="icon">🧚</span>Νεράιδα</button>
-        <button class="arch-btn" data-val="Τέρας"><span class="icon">👹</span>Τέρας</button>
-        <button class="arch-btn" data-val="Σοφός Γέρος"><span class="icon">🦉</span>Σοφός</button>
-        <button class="arch-btn" data-val="Εφευρέτης"><span class="icon">⚙️</span>Εφευρέτης</button>
-        <button class="arch-btn" data-val="Μυστηριώδης"><span class="icon">🌒</span>Μυστηριώδης</button>
+  <!-- FORM -->
+  <div id="form-screen">
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">✦ Ταυτότητα</div>
+        <label>Όνομα Χαρακτήρα</label>
+        <input type="text" id="charName" placeholder="π.χ. Αστέρω η Μαγεύτρα…">
+        <label>Αρχέτυπο</label>
+        <div class="archetype-grid">
+          <button class="arch-btn" data-val="Μάγος"><span class="icon">🧙</span>Μάγος</button>
+          <button class="arch-btn" data-val="Πριγκίπισσα"><span class="icon">👑</span>Πριγκίπισσα</button>
+          <button class="arch-btn" data-val="Δράκος"><span class="icon">🐉</span>Δράκος</button>
+          <button class="arch-btn" data-val="Ήρωας"><span class="icon">⚔️</span>Ήρωας</button>
+          <button class="arch-btn" data-val="Νεράιδα"><span class="icon">🧚</span>Νεράιδα</button>
+          <button class="arch-btn" data-val="Τέρας"><span class="icon">👹</span>Τέρας</button>
+          <button class="arch-btn" data-val="Σοφός Γέρος"><span class="icon">🦉</span>Σοφός</button>
+          <button class="arch-btn" data-val="Εφευρέτης"><span class="icon">⚙️</span>Εφευρέτης</button>
+          <button class="arch-btn" data-val="Μυστηριώδης"><span class="icon">🌒</span>Μυστηριώδης</button>
+        </div>
+        <label>Κόσμος / Σκηνικό</label>
+        <select id="charWorld">
+          <option value="enchanted forest">🌲 Μαγικό Δάσος</option>
+          <option value="underwater kingdom">🌊 Υποθαλάσσιο Βασίλειο</option>
+          <option value="floating sky islands">☁️ Νησιά στα Σύννεφα</option>
+          <option value="ancient magical kingdom">🏰 Αρχαίο Μαγικό Βασίλειο</option>
+          <option value="dark cursed land">🌑 Σκοτεινή Γη</option>
+          <option value="starry cosmos">✨ Αστρικός Κόσμος</option>
+        </select>
       </div>
 
-      <label>Κόσμος / Σκηνικό</label>
-      <select id="charWorld">
-        <option value="enchanted forest">🌲 Μαγικό Δάσος</option>
-        <option value="underwater kingdom">🌊 Υποθαλάσσιο Βασίλειο</option>
-        <option value="floating sky islands">☁️ Νησιά στα Σύννεφα</option>
-        <option value="ancient magical kingdom">🏰 Αρχαίο Μαγικό Βασίλειο</option>
-        <option value="dark cursed land">🌑 Σκοτεινή Γη</option>
-        <option value="starry cosmos">✨ Αστρικός Κόσμος</option>
-      </select>
-    </div>
-
-    <!-- PERSONALITY -->
-    <div class="card">
-      <div class="card-title">✦ Προσωπικότητα</div>
-
-      <label>Χαρακτηριστικά</label>
-      <div class="traits-wrap" id="traitsGrid">
-        <span class="trait" data-val="γενναίος">γενναίος</span>
-        <span class="trait" data-val="σοφός">σοφός</span>
-        <span class="trait" data-val="πονηρός">πονηρός</span>
-        <span class="trait" data-val="καλόκαρδος">καλόκαρδος</span>
-        <span class="trait" data-val="μελαγχολικός">μελαγχολικός</span>
-        <span class="trait" data-val="παιχνιδιάρης">παιχνιδιάρης</span>
-        <span class="trait" data-val="μυστηριώδης">μυστηριώδης</span>
-        <span class="trait" data-val="περήφανος">περήφανος</span>
-        <span class="trait" data-val="τρυφερός">τρυφερός</span>
-        <span class="trait" data-val="σκληρός">σκληρός</span>
-        <span class="trait" data-val="αθώος">αθώος</span>
-        <span class="trait" data-val="αδέσμευτος">αδέσμευτος</span>
-      </div>
-
-      <label>Βιογραφικό & Ατάκα (από τον Claude)</label>
-      <textarea id="bioText" placeholder="Πήγαινε στο Claude.ai, ζήτα του να φτιάξει βιογραφικό για τον χαρακτήρα σου, και επικόλλησέ το εδώ…"></textarea>
-
-      <label>Χαρακτηριστική Ατάκα (προαιρετικό)</label>
-      <input type="text" id="voiceLineText" placeholder="π.χ. «Εγώ είμαι η σκιά που σε ακολουθεί παντού…»">
-
-      <button class="btn-primary" id="createBtn" onclick="createCharacter()">
-        ✨ Δημιούργησε τον Χαρακτήρα
-      </button>
-      <div class="err" id="formErr" style="display:none"></div>
-
-      <div class="info-box">
-        💡 <strong>Πώς να φτιάξεις κείμενο:</strong><br>
-        Πήγαινε στο <strong>Claude.ai</strong> και πες του:<br>
-        <em>«Φτιάξε βιογραφικό για έναν Δράκο που λέγεται Ξάνθος, μελαγχολικό και περήφανο, που ζει σε σκοτεινή γη»</em><br>
-        Αντέγραψε το αποτέλεσμα και επικόλλησέ το παραπάνω.
+      <div class="card">
+        <div class="card-title">✦ Προσωπικότητα</div>
+        <label>Χαρακτηριστικά</label>
+        <div class="traits-wrap">
+          <span class="trait" data-val="γενναίος">γενναίος</span>
+          <span class="trait" data-val="σοφός">σοφός</span>
+          <span class="trait" data-val="πονηρός">πονηρός</span>
+          <span class="trait" data-val="καλόκαρδος">καλόκαρδος</span>
+          <span class="trait" data-val="μελαγχολικός">μελαγχολικός</span>
+          <span class="trait" data-val="παιχνιδιάρης">παιχνιδιάρης</span>
+          <span class="trait" data-val="μυστηριώδης">μυστηριώδης</span>
+          <span class="trait" data-val="περήφανος">περήφανος</span>
+          <span class="trait" data-val="τρυφερός">τρυφερός</span>
+          <span class="trait" data-val="σκληρός">σκληρός</span>
+          <span class="trait" data-val="αθώος">αθώος</span>
+          <span class="trait" data-val="αδέσμευτος">αδέσμευτος</span>
+        </div>
+        <label>Επιπλέον στοιχεία (προαιρετικό)</label>
+        <textarea id="charExtra" placeholder="π.χ. Μιλά σε ρίμες, κρύβει ένα μυστικό, φοβάται το νερό…"></textarea>
+        <button class="btn-primary" id="startBtn" onclick="startConversation()">
+          🎙 Μίλα με τον Χαρακτήρα
+        </button>
+        <div class="err" id="formErr" style="display:none"></div>
       </div>
     </div>
-
   </div>
 
-  <!-- OUTPUT -->
-  <div id="output-panel" class="card">
-    <div class="card-title">✦ Ο Χαρακτήρας Σου</div>
+  <!-- CHARACTER + CALL SCREEN -->
+  <div id="char-screen">
+    <div class="card">
+      <div class="card-title">✦ Ο Χαρακτήρας Σου</div>
+      <div class="char-header">
+        <div class="avatar" id="charAvatar">✨</div>
+        <div>
+          <div class="char-name" id="charNameDisplay"></div>
+          <div class="char-arch" id="charArchDisplay"></div>
+          <div class="badges" id="charBadges"></div>
+        </div>
+      </div>
 
-    <div class="char-sheet">
-      <div class="avatar" id="charAvatar">✨</div>
-      <div>
-        <div class="char-name" id="charNameDisplay">—</div>
-        <div class="char-arch" id="charArchDisplay">—</div>
-        <div class="badges" id="charBadges"></div>
-        <div class="voice-indicator" id="voiceIndicator"></div>
+      <div class="call-box">
+        <div class="call-status" id="callStatus">Συνδέεται…</div>
+        <div class="orb-wrap">
+          <div class="orb idle" id="orb" onclick="toggleMic()">
+            <span class="orb-icon" id="orbIcon">⏳</span>
+          </div>
+        </div>
+        <div class="orb-hint" id="orbHint">Φορτώνει τον χαρακτήρα…</div>
+        <div class="vol-bars">
+          <div class="bar" id="b0"></div><div class="bar" id="b1"></div>
+          <div class="bar" id="b2"></div><div class="bar" id="b3"></div>
+          <div class="bar" id="b4"></div><div class="bar" id="b5"></div>
+          <div class="bar" id="b6"></div>
+        </div>
+        <div class="transcript" id="transcript"></div>
+        <div class="call-btns">
+          <button class="btn-end" onclick="endCall()">⏹ Τέλος Συνομιλίας</button>
+          <button class="btn-new" onclick="newCharacter()">↩ Νέος Χαρακτήρας</button>
+        </div>
       </div>
     </div>
-
-    <div class="bio" id="charBio"></div>
-
-    <!-- Voice Line -->
-    <div class="sep" id="voiceSection" style="display:none">
-      <div class="sec-head">
-        <span class="sec-label">✦ Η ΦΩΝΗ ΤΟΥ ΧΑΡΑΚΤΗΡΑ</span>
-        <button class="btn-small" id="speakBtn" onclick="toggleSpeak()">🔊 Άκουσε</button>
-      </div>
-      <div class="voice-bubble" id="voiceBubble"></div>
-    </div>
-
-    <!-- Chat -->
-    <div class="sep">
-      <div class="sec-label" style="margin-bottom:.8rem">✦ ΜΙΛΑ ΜΑΖΙ ΤΟΥ</div>
-      <div class="chat-msgs" id="chatMsgs"></div>
-      <div class="chat-row">
-        <input type="text" id="chatInput" placeholder="Πες κάτι στον χαρακτήρα…">
-        <button class="btn-send" id="sendBtn" onclick="sendChat()">Στείλε ✦</button>
-      </div>
-      <div class="info-box" style="margin-top:.8rem;font-size:.82rem">
-        💬 Γράψε μήνυμα, μετά πήγαινε στο <strong>Claude.ai</strong>, πες του να απαντήσει ως τον χαρακτήρα, και επικόλλα την απάντηση στο chat με το κουμπί <strong>Απάντηση Χαρακτήρα</strong>.
-      </div>
-      <button class="btn-small" onclick="pasteCharResponse()" style="margin-top:.6rem">📋 Απάντηση Χαρακτήρα</button>
-    </div>
-
-    <button class="btn-sec" onclick="resetAll()">↩ Νέος Χαρακτήρας</button>
   </div>
+
 </div>
 
+<!-- ElevenLabs SDK via CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@elevenlabs/client/dist/index.umd.js"></script>
 <script>
-// === Stars ===
-const starsEl = document.getElementById('stars');
-for (let i = 0; i < 70; i++) {
-  const s = document.createElement('div');
-  s.className = 'star';
-  const sz = Math.random() * 2.2 + 0.5;
-  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+2).toFixed(1)}s;animation-delay:${(Math.random()*3).toFixed(1)}s`;
-  starsEl.appendChild(s);
+const AGENT_ID = 'agent_2301kneeqw6jem195f14a1avjenh';
+
+const ICONS = {'Μάγος':'🧙','Πριγκίπισσα':'👑','Δράκος':'🐉','Ήρωας':'⚔️','Νεράιδα':'🧚','Τέρας':'👹','Σοφός Γέρος':'🦉','Εφευρέτης':'⚙️','Μυστηριώδης':'🌒'};
+
+const FIRST_MSG = {
+  'Μάγος':       'Προσέγγισε, αν τολμάς… Τι ζητάς από τον μάγο;',
+  'Πριγκίπισσα': 'Ω! Ένας επισκέπτης! Χαίρομαι που ήρθες στο βασίλειό μου.',
+  'Δράκος':      '*βαθύ γρύλισμα* Ποιος ενοχλεί τον ύπνο μου;',
+  'Ήρωας':       'Σύντροφε! Χαίρομαι που σε βλέπω. Τι χρειάζεσαι;',
+  'Νεράιδα':     '*σκορπίζει σπίθες* Γεια σου! Τι ευχή θέλεις σήμερα;',
+  'Τέρας':       '*βογγητό* Τι θέλεις… μίλα.',
+  'Σοφός Γέρος': 'Κάθισε, παιδί μου. Έχω πολλά να σου πω.',
+  'Εφευρέτης':   'Εξαιρετικό timing! Μόλις τελείωσα το νέο μου εφεύρεμα!',
+  'Μυστηριώδης': '…Σε περίμενα. Κάθισε.'
+};
+
+// Stars
+const se = document.getElementById('stars');
+for(let i=0;i<70;i++){
+  const s=document.createElement('div'); s.className='star';
+  const sz=Math.random()*2.2+.5;
+  s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+2).toFixed(1)}s;animation-delay:${(Math.random()*3).toFixed(1)}s`;
+  se.appendChild(s);
 }
 
-// === State ===
-let elKey = '';
-let voices = [];
-let archetype = '';
-let selectedTraits = [];
-let charData = null;
-let currentAudio = null;
-let isSpeaking = false;
+let archetype='', selectedTraits=[], conversation=null, micActive=false, charData=null, volInterval=null;
 
-const ICONS = { 'Μάγος':'🧙','Πριγκίπισσα':'👑','Δράκος':'🐉','Ήρωας':'⚔️','Νεράιδα':'🧚','Τέρας':'👹','Σοφός Γέρος':'🦉','Εφευρέτης':'⚙️','Μυστηριώδης':'🌒' };
-
-const VOICE_HINTS = {
-  'Μάγος':        ['wizard','magic','deep','wise','old','mystic','george'],
-  'Δράκος':       ['deep','dark','dragon','bass','villain','arnold','strong'],
-  'Τέρας':        ['deep','dark','monster','rough','scary','villain'],
-  'Σοφός Γέρος':  ['old','wise','elder','calm','grandfather','george'],
-  'Πριγκίπισσα':  ['princess','sweet','girl','female','soft','grace','bella','rachel'],
-  'Νεράιδα':      ['fairy','bright','energetic','female','young','elli','aria','nova'],
-  'Ήρωας':        ['hero','strong','confident','male','brave','adam','josh'],
-  'Εφευρέτης':    ['excited','energetic','quirky','fast','young','sam','charlie'],
-  'Μυστηριώδης':  ['mysterious','calm','whisper','dark','adam','antoni'],
-};
-
-const VOICE_SETTINGS = {
-  'Μάγος':       { stability:.55, similarity_boost:.75, style:.40 },
-  'Δράκος':      { stability:.28, similarity_boost:.85, style:.78 },
-  'Τέρας':       { stability:.25, similarity_boost:.80, style:.72 },
-  'Σοφός Γέρος': { stability:.70, similarity_boost:.75, style:.18 },
-  'Πριγκίπισσα': { stability:.60, similarity_boost:.80, style:.35 },
-  'Νεράιδα':     { stability:.42, similarity_boost:.75, style:.58 },
-  'Ήρωας':       { stability:.65, similarity_boost:.80, style:.28 },
-  'Εφευρέτης':   { stability:.20, similarity_boost:.70, style:.88 },
-  'Μυστηριώδης': { stability:.75, similarity_boost:.85, style:.10 },
-};
-
-// === Archetype ===
-document.querySelectorAll('.arch-btn').forEach(btn => {
-  btn.onclick = () => {
-    document.querySelectorAll('.arch-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    archetype = btn.dataset.val;
+document.querySelectorAll('.arch-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    document.querySelectorAll('.arch-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); archetype=btn.dataset.val;
   };
 });
 
-// === Traits ===
-document.querySelectorAll('.trait').forEach(t => {
-  t.onclick = () => {
+document.querySelectorAll('.trait').forEach(t=>{
+  t.onclick=()=>{
     t.classList.toggle('active');
-    const v = t.dataset.val;
-    if (t.classList.contains('active')) { if (!selectedTraits.includes(v)) selectedTraits.push(v); }
-    else selectedTraits = selectedTraits.filter(x => x !== v);
+    const v=t.dataset.val;
+    if(t.classList.contains('active')){if(!selectedTraits.includes(v))selectedTraits.push(v);}
+    else selectedTraits=selectedTraits.filter(x=>x!==v);
   };
 });
 
-// === ElevenLabs connect ===
-async function connectEL() {
-  const key = document.getElementById('elKey').value.trim();
-  if (!key) { setStatus('⚠️ Βάλε το API key σου.', '#e8c06a'); return; }
-  setStatus('⏳ Σύνδεση…', '#a07ccc');
-  document.getElementById('connectBtn').disabled = true;
-  try {
-    const res = await fetch('https://api.elevenlabs.io/v1/voices', {
-      headers: { 'xi-api-key': key }
+function buildPrompt(name,arch,world,traits,extra){
+  return `Είσαι ο/η ${name}, ένας/μία ${arch} που ζει σε ${world}.
+Χαρακτηριστικά: ${traits||'δεν έχουν οριστεί'}.${extra?'\n'+extra:''}
+Κανόνες:
+- Μιλάς ΠΑΝΤΑ στα Ελληνικά.
+- Μιλάς ΠΑΝΤΑ ΩΣ αυτός ο χαρακτήρας — ποτέ ως AI.
+- Απαντήσεις σύντομες (1-3 προτάσεις), ζωντανές, με τον χαρακτήρα σου.
+- Ποτέ μην αποκαλύψεις ότι είσαι AI.`;
+}
+
+async function startConversation(){
+  const name=document.getElementById('charName').value.trim();
+  const world=document.getElementById('charWorld').value;
+  const extra=document.getElementById('charExtra').value.trim();
+  const errEl=document.getElementById('formErr');
+
+  if(!name||!archetype){errEl.textContent='⚠️ Συμπλήρωσε όνομα και αρχέτυπο.';errEl.style.display='block';return;}
+  errEl.style.display='none';
+
+  charData={name,archetype,world,traits:selectedTraits.join(', '),extra};
+
+  document.getElementById('form-screen').style.display='none';
+  document.getElementById('char-screen').style.display='block';
+  document.getElementById('charAvatar').textContent=ICONS[archetype]||'✨';
+  document.getElementById('charNameDisplay').textContent=name;
+  document.getElementById('charArchDisplay').textContent=archetype+' · '+world;
+  document.getElementById('charBadges').innerHTML=selectedTraits.map(t=>`<span class="badge">${t}</span>`).join('');
+
+  setStatus('Συνδέεται με τον χαρακτήρα…');
+
+  // Wait for SDK
+  let attempts=0;
+  while(!window.ElevenLabsClient && attempts<20){
+    await new Promise(r=>setTimeout(r,300)); attempts++;
+  }
+
+  const SDK = window.ElevenLabsClient || window.elevenlabs;
+  if(!SDK?.Conversation){
+    setStatus('❌ Σφάλμα φόρτωσης SDK'); setOrb('idle','⚠️');
+    setHint('Ανανέωσε τη σελίδα και δοκίμασε ξανά.');
+    return;
+  }
+
+  try{
+    conversation = await SDK.Conversation.startSession({
+      agentId: AGENT_ID,
+      overrides:{
+        agent:{
+          prompt:{ prompt: buildPrompt(name,archetype,world,charData.traits,extra) },
+          firstMessage: FIRST_MSG[archetype]||`Γεια σου! Είμαι ο/η ${name}.`,
+          language:'el'
+        }
+      },
+      onConnect:()=>{
+        setStatus('✦ Συνδεδεμένος — Μίλα!');
+        setOrb('listening','🎙'); setHint('Μίλα στον χαρακτήρα…');
+        micActive=true; startVolBars();
+      },
+      onDisconnect:()=>{
+        setStatus('Η συνομιλία τελείωσε');
+        setOrb('idle','🌙'); setHint(''); stopVolBars();
+      },
+      onMessage:({source,message})=>{
+        if(message?.trim()) addTranscript(source==='user'?'user':'agent', message);
+      },
+      onModeChange:({mode})=>{
+        if(mode==='speaking'){setOrb('speaking','🔊');setHint(`${name} μιλά…`);}
+        else{setOrb('listening','🎙');setHint('Μίλα στον χαρακτήρα…');}
+      },
+      onError:(e)=>{
+        console.error(e); setStatus('❌ Σφάλμα σύνδεσης');
+        setOrb('idle','⚠️'); setHint(String(e?.message||e||''));
+      }
     });
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    voices = data.voices || [];
-    elKey = key;
-    setStatus(`✅ Συνδέθηκες! ${voices.length} φωνές διαθέσιμες.`, '#7acc8a');
-    document.getElementById('connectBtn').textContent = '✅ Συνδεδεμένο';
-  } catch {
-    setStatus('❌ Λάθος API key ή πρόβλημα σύνδεσης.', '#e07070');
-    document.getElementById('connectBtn').disabled = false;
+  }catch(e){
+    console.error(e);
+    setStatus('❌ Αποτυχία σύνδεσης');
+    setOrb('idle','⚠️');
+    setHint(e?.message||'Έλεγξε το Agent ID και τα permissions.');
   }
 }
 
-function setStatus(msg, color) {
-  const el = document.getElementById('apiStatus');
-  el.textContent = msg;
-  el.style.color = color;
+function toggleMic(){
+  if(!conversation) return;
+  micActive=!micActive;
+  conversation.setMicMuted(!micActive);
+  if(micActive){setOrb('listening','🎙');setHint('Μίλα στον χαρακτήρα…');}
+  else{setOrb('muted','🔇');setHint('Μικρόφωνο σε σίγαση — πάτα για επανενεργοποίηση');}
 }
 
-// === Pick best voice ===
-function pickVoice(arch) {
-  if (!voices.length) return null;
-  const hints = VOICE_HINTS[arch] || [];
-  const scored = voices.map(v => {
-    const text = [v.name, v.description, ...Object.values(v.labels||{})].join(' ').toLowerCase();
-    let score = 0;
-    hints.forEach((h, i) => { if (text.includes(h)) score += hints.length - i; });
-    return { v, score };
-  });
-  return scored.sort((a,b) => b.score - a.score)[0].v;
+async function endCall(){
+  if(conversation){try{await conversation.endSession();}catch(e){} conversation=null;}
+  stopVolBars(); micActive=false;
+  setStatus('Η συνομιλία τελείωσε'); setOrb('idle','🌙'); setHint('');
 }
 
-// === Create character ===
-function createCharacter() {
-  const name = document.getElementById('charName').value.trim();
-  const bio = document.getElementById('bioText').value.trim();
-  const voiceLine = document.getElementById('voiceLineText').value.trim();
-  const errEl = document.getElementById('formErr');
-
-  if (!name || !archetype) { errEl.textContent = '⚠️ Συμπλήρωσε όνομα και αρχέτυπο.'; errEl.style.display='block'; return; }
-  if (!bio) { errEl.textContent = '⚠️ Χρειάζεται βιογραφικό κείμενο.'; errEl.style.display='block'; return; }
-  errEl.style.display = 'none';
-
-  const voice = pickVoice(archetype);
-  charData = { name, archetype, bio, voiceLine, traits: selectedTraits.join(', '), voice };
-
-  // Fill output
-  document.getElementById('charAvatar').textContent = ICONS[archetype] || '✨';
-  document.getElementById('charNameDisplay').textContent = name;
-  document.getElementById('charArchDisplay').textContent = archetype;
-  document.getElementById('charBadges').innerHTML = selectedTraits.map(t => `<span class="badge">${t}</span>`).join('');
-  document.getElementById('charBio').textContent = bio;
-  document.getElementById('voiceIndicator').innerHTML = voice ? `🎙 ${voice.name}` : '';
-
-  if (voiceLine) {
-    document.getElementById('voiceBubble').textContent = voiceLine;
-    document.getElementById('voiceSection').style.display = 'block';
-    // Auto-speak
-    setTimeout(() => speakText(voiceLine), 400);
-  } else {
-    document.getElementById('voiceSection').style.display = 'none';
-  }
-
-  document.getElementById('chatMsgs').innerHTML = '';
-  const panel = document.getElementById('output-panel');
-  panel.classList.add('visible');
-  panel.scrollIntoView({ behavior:'smooth', block:'start' });
+async function newCharacter(){
+  await endCall();
+  document.getElementById('char-screen').style.display='none';
+  document.getElementById('form-screen').style.display='block';
+  document.getElementById('transcript').innerHTML='';
+  document.getElementById('charName').value='';
+  document.getElementById('charExtra').value='';
+  archetype=''; selectedTraits=[];
+  document.querySelectorAll('.arch-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.trait').forEach(t=>t.classList.remove('active'));
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// === TTS ===
-async function speakText(text) {
-  if (!elKey || !voices.length) return;
-  stopAudio();
-  const voice = pickVoice(charData?.archetype || archetype);
-  if (!voice) return;
-  const settings = VOICE_SETTINGS[charData?.archetype || archetype] || { stability:.5, similarity_boost:.75, style:.3 };
-  setSpeaking(true);
-  try {
-    const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice.voice_id}`, {
-      method: 'POST',
-      headers: { 'xi-api-key': elKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, model_id:'eleven_multilingual_v2', voice_settings: settings })
+function setStatus(m){document.getElementById('callStatus').textContent=m;}
+function setHint(m){document.getElementById('orbHint').textContent=m;}
+function setOrb(state,icon){
+  document.getElementById('orb').className=`orb ${state}`;
+  document.getElementById('orbIcon').textContent=icon;
+}
+function addTranscript(role,text){
+  const el=document.getElementById('transcript');
+  const line=document.createElement('span');
+  line.className=role==='user'?'t-user':'t-agent';
+  line.textContent=(role==='user'?'🧑 ':(ICONS[charData?.archetype]||'✨')+' ')+text;
+  el.appendChild(line); el.scrollTop=el.scrollHeight;
+}
+function startVolBars(){
+  const bars=document.querySelectorAll('.bar');
+  volInterval=setInterval(()=>{
+    const orb=document.getElementById('orb');
+    const active=orb.classList.contains('listening')||orb.classList.contains('speaking');
+    bars.forEach(b=>{
+      b.style.height=(active?Math.random()*28+4:4)+'px';
+      b.classList.toggle('active',active);
     });
-    if (!res.ok) throw new Error();
-    const blob = await res.blob();
-    const audio = new Audio(URL.createObjectURL(blob));
-    currentAudio = audio;
-    audio.onended = () => setSpeaking(false);
-    audio.onerror = () => setSpeaking(false);
-    audio.play();
-  } catch { setSpeaking(false); }
+  },120);
 }
-
-function stopAudio() {
-  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
-  setSpeaking(false);
-}
-
-function setSpeaking(val) {
-  isSpeaking = val;
-  const btn = document.getElementById('speakBtn');
-  if (btn) {
-    btn.textContent = val ? '⏹ Σταμάτα' : '🔊 Άκουσε';
-    btn.classList.toggle('speaking', val);
-  }
-}
-
-function toggleSpeak() {
-  if (isSpeaking) { stopAudio(); return; }
-  const vl = document.getElementById('voiceBubble').textContent;
-  if (vl) speakText(vl);
-}
-
-// === Chat ===
-function sendChat() {
-  const input = document.getElementById('chatInput');
-  const msg = input.value.trim();
-  if (!msg) return;
-  addMsg(msg, 'user');
-  input.value = '';
-}
-
-async function pasteCharResponse() {
-  try {
-    const text = await navigator.clipboard.readText();
-    if (!text.trim()) return;
-    addMsg(text.trim(), 'char');
-    speakText(text.trim());
-  } catch {
-    // Clipboard permission denied — fallback prompt
-    const text = prompt('Επικόλλα την απάντηση του χαρακτήρα:');
-    if (text?.trim()) {
-      addMsg(text.trim(), 'char');
-      speakText(text.trim());
-    }
-  }
-}
-
-function addMsg(text, type) {
-  const div = document.createElement('div');
-  div.className = `msg ${type}`;
-  div.textContent = text;
-  if (type === 'char') {
-    const btn = document.createElement('button');
-    btn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:.8rem;opacity:.5;margin-left:.4rem;';
-    btn.textContent = '🔊';
-    btn.onclick = () => speakText(text);
-    div.appendChild(btn);
-  }
-  const container = document.getElementById('chatMsgs');
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-}
-
-// Enter to send
-document.getElementById('chatInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') sendChat();
-});
-document.getElementById('elKey').addEventListener('keydown', e => {
-  if (e.key === 'Enter') connectEL();
-});
-
-// === Reset ===
-function resetAll() {
-  stopAudio();
-  archetype = ''; selectedTraits = []; charData = null;
-  document.getElementById('charName').value = '';
-  document.getElementById('bioText').value = '';
-  document.getElementById('voiceLineText').value = '';
-  document.querySelectorAll('.arch-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.trait').forEach(t => t.classList.remove('active'));
-  document.getElementById('output-panel').classList.remove('visible');
-  window.scrollTo({ top:0, behavior:'smooth' });
+function stopVolBars(){
+  clearInterval(volInterval);
+  document.querySelectorAll('.bar').forEach(b=>{b.style.height='4px';b.classList.remove('active');});
 }
 </script>
 </body>
